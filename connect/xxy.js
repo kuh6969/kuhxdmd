@@ -1317,6 +1317,7 @@ await fs.unlinkSync(encmedia)
 throw `Kirim Gambar/Video Dengan Caption ${prefix + command}\nDurasi Video 1-9 Detik`
 }
 }
+break
 
 case 'smeme': case 'stickermeme': case 'stickmeme': {
   let { TelegraPh } = require('../message/uploader')
