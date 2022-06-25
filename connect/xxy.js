@@ -337,15 +337,12 @@ isWin = true
 }
 let winner = isSurrender ? room.game.currentTurn : room.game.winner
 let str = `Room ID: ${room.id}
-
 ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
-
 ${isWin ? `@${winner.split('@')[0]} Menang!` : isTie ? `Game berakhir` : `Giliran ${['❌', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split('@')[0]})`}
 ❌: @${room.game.playerX.split('@')[0]}
 ⭕: @${room.game.playerO.split('@')[0]}
-
 Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
 if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
 room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
@@ -372,10 +369,8 @@ roof.asal = m.chat
 clearTimeout(roof.waktu)
 //delete roof[roof.id].waktu
 neoxy.sendText(m.chat, `Suit telah dikirimkan ke chat
-
 @${roof.p.split`@`[0]} dan 
 @${roof.p2.split`@`[0]}
-
 Silahkan pilih suit di chat masing"
 klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
 if (!roof.pilih) neoxy.sendText(roof.p, `Silahkan pilih \n\nBatu🗿\nKertas📄\nGunting✂️`, m)
@@ -420,7 +415,6 @@ else if (k.test(stage) && b.test(stage2)) win = roof.p
 else if (k.test(stage) && g.test(stage2)) win = roof.p2
 else if (stage == stage2) tie = true
 neoxy.sendText(roof.asal, `_*Hasil Suit*_${tie ? '\nSERI' : ''}
-
 @${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` Menang \n` : ` Kalah \n`}
 @${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` Menang \n` : ` Kalah \n`}
 `.trim(), m, { mentions: [roof.p, roof.p2] })
@@ -596,23 +590,19 @@ await sleep(1000)
 upvote = vote[m.chat][1]
 devote = vote[m.chat][2]
 teks_vote = `*「 VOTE 」*
-
 *Alasan:* ${vote[m.chat][0]}
-
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][1].length}
 │
 │ 
 └────
-
 ┌〔 DEVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][2].length}
 │
 │ 
 └────
-
 *${prefix}hapusvote* - untuk menghapus vote`
 let buttonsVote = [
   {buttonId: `${prefix}upvote`, buttonText: {displayText: 'UPVOTE'}, type: 1},
@@ -637,23 +627,19 @@ if (wasVote) throw 'Kamu Sudah Vote'
 vote[m.chat][1].push(m.sender)
 menvote = vote[m.chat][1].concat(vote[m.chat][2])
 teks_vote = `*「 VOTE 」*
-
 *Alasan:* ${vote[m.chat][0]}
-
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][1].length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 ┌〔 DEVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][2].length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 *${prefix}hapusvote* - untuk menghapus vote`
 let buttonsUpvote = [
 {buttonId: `${prefix}upvote`, buttonText: {displayText: 'UPVOTE'}, type: 1},
@@ -679,23 +665,19 @@ if (wasVote) throw 'Kamu Sudah Vote'
 vote[m.chat][2].push(m.sender)
 menvote = vote[m.chat][1].concat(vote[m.chat][2])
 teks_vote = `*「 VOTE 」*
-
 *Alasan:* ${vote[m.chat][0]}
-
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][1].length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 ┌〔 DEVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][2].length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 *${prefix}hapusvote* - untuk menghapus vote`
 let buttonsDevote = [
 {buttonId: `${prefix}upvote`, buttonText: {displayText: 'UPVOTE'}, type: 1},
@@ -716,26 +698,20 @@ case 'cekvote':
 if (!m.isGroup) throw mess.group
 if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
 teks_vote = `*「 VOTE 」*
-
 *Alasan:* ${vote[m.chat][0]}
-
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${upvote.length}
 ${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 ┌〔 DEVOTE 〕
 │ 
 ├ Total: ${devote.length}
 ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 │ 
 └────
-
 *${prefix}hapusvote* - untuk menghapus vote
-
-
 ©${neoxy.user.id}
 `
 neoxy.sendTextWithMentions(m.chat, teks_vote, m)
@@ -852,7 +828,6 @@ let member = participants.map(u => u.id)
 let orang = member[Math.floor(Math.random() * member.length)]
 let jodoh = member[Math.floor(Math.random() * member.length)]
 let jawab = `Ciee yang Jadian💖 Jangan lupa pajak jadiannya🐤
-
 @${orang.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
 let menst = [orang, jodoh]
 let buttons = [
@@ -867,7 +842,6 @@ let member = participants.map(u => u.id)
 let me = m.sender
 let jodoh = member[Math.floor(Math.random() * member.length)]
 let jawab = `👫Jodoh mu adalah
-
 @${me.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
 let ments = [me, jodoh]
 let buttons = [
@@ -916,13 +890,10 @@ O: '⭕',
 }[v]
 })
 let str = `Room ID: ${room.id}
-
 ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
-
 Menunggu @${room.game.currentTurn.split('@')[0]}
-
 Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
 if (room.x !== room.o) await neoxy.sendText(room.x, str, m, { mentions: parseMention(str) } )
 await neoxy.sendText(room.o, str, m, { mentions: parseMention(str) } )
@@ -944,7 +915,6 @@ case 'sc': case 'script': case 'sourcecode':
 teks =`
 _*Script Bot :*_
 https://ramadhankukuh.github.io//Neoxy-Base
-
 _*Creator : Neoxy-BotMD*_
 _*Youtube : Lexxy Official*_
 _*Whatsapp : 0838-3455-8105*_
@@ -1081,9 +1051,7 @@ if (!m.mentionedJid[0]) return m.reply(`_Siapa yang ingin kamu tantang?_\nTag or
 if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.mentionedJid[0]))) throw `Orang yang kamu tantang sedang bermain suit bersama orang lain :(`
 let id = 'suit_' + new Date() * 1
 let caption = `_*SUIT PvP*_
-
 @${m.sender.split`@`[0]} menantang @${m.mentionedJid[0].split`@`[0]} untuk bermain suit
-
 Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 this.suit[id] = {
 chat: await neoxy.sendText(m.chat, caption, m, { mentions: parseMention(caption) }),
@@ -1294,10 +1262,8 @@ neww = performance.now()
 oldd = performance.now()
 respon = `> *_Internal Bot Server_*
 ${mono}RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}${mono}
-
 > *_NodeJS Memory Usaage_*
 ${mono}${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}${mono}
-
 ${cpus[0] ? `_Total CPU Usage_
 ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
@@ -1444,11 +1410,9 @@ if (!q) return m.reply(`*Contoh* :\n#creategc namagroup`)
 let cret = await neoxy.groupCreate(args.join(" "), [])
 let response = await neoxy.groupInviteCode(cret.id)
 teks = `  「 *Create Group* 」
-
 _▸ Name : ${cret.subject}_
 _▸ Owner : @${cret.owner.split("@")[0]}_
 _▸ Time : ${moment(cret.creation * 1000).tz("Asia/Jakarta").format("DD/MM/YYYY HH:mm:ss")} WIB_
-
 https://chat.whatsapp.com/${response}
 `
 m.reply(teks)
@@ -1702,6 +1666,280 @@ case 'wikimedia': {
   headerType: 4
   }
   neoxy.sendMessage(m.chat, buttonMessage, { quoted: m })
+  }
+  break
+
+//━━━━━━━━━━━━━━━[ BUAT NAMBAH FITUR BARU ]━━━━━━━━━━━━━━━━━//
+  case 'imagenobg': case 'removebg': case 'remove-bg': {
+    if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+    if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+    if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+    let remobg = require('remove.bg')
+    let apirnobg = ['q61faXzzR5zNU6cvcrwtUkRU','S258diZhcuFJooAtHTaPEn4T','5LjfCVAp4vVNYiTjq9mXJWHF','aT7ibfUsGSwFyjaPZ9eoJc61','BY63t7Vx2tS68YZFY6AJ4HHF','5Gdq1sSWSeyZzPMHqz7ENfi8','86h6d6u4AXrst4BVMD9dzdGZ','xp8pSDavAgfE5XScqXo9UKHF','dWbCoCb3TacCP93imNEcPxcL']
+    let apinobg = apirnobg[Math.floor(Math.random() * apirnobg.length)]
+    hmm = await './options/remobg-'+getRandom('')
+    localFile = await neoxy.downloadAndSaveMediaMessage(quoted, hmm)
+    outputFile = await './options/hremo-'+getRandom('.png')
+    m.reply(mess.wait)
+    remobg.removeBackgroundFromImageFile({
+      path: localFile,
+      apiKey: apinobg,
+      size: "regular",
+      type: "auto",
+      scale: "100%",
+      outputFile 
+    }).then(async result => {
+    neoxy.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
+    await fs.unlinkSync(localFile)
+    await fs.unlinkSync(outputFile)
+    })
+    }
+    break
+
+    case 'bass': case 'blown': case 'deep': case 'earrape': case 'fast': case 'fat': case 'nightcore': case 'reverse': case 'robot': case 'slow': case 'smooth': case 'tupai':
+      try {
+      let set
+      if (/bass/.test(command)) set = '-af equalizer=f=54:width_type=o:width=2:g=20'
+      if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
+      if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
+      if (/earrape/.test(command)) set = '-af volume=12'
+      if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100"'
+      if (/fat/.test(command)) set = '-filter:a "atempo=1.6,asetrate=22100"'
+      if (/nightcore/.test(command)) set = '-filter:a atempo=1.06,asetrate=44100*1.25'
+      if (/reverse/.test(command)) set = '-filter_complex "areverse"'
+      if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
+      if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"'
+      if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
+      if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
+      if (/audio/.test(mime)) {
+      m.reply(mess.wait)
+      let media = await neoxy.downloadAndSaveMediaMessage(quoted)
+      let ran = getRandom('.mp3')
+      exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+      fs.unlinkSync(media)
+      if (err) return m.reply(err)
+      let buff = fs.readFileSync(ran)
+      neoxy.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+      fs.unlinkSync(ran)
+      })
+      } else m.reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
+      } catch (e) {
+      m.reply(e)
+      }
+      break
+
+      case 'ppcouple': case 'ppc': {
+        m.reply(mess.wait)
+        let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
+        let random = anu[Math.floor(Math.random() * anu.length)]
+        neoxy.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
+        neoxy.sendMessage(m.chat, { image: { url: random.female }, caption: `Couple Female` }, { quoted: m })
+    }
+break
+
+case 'herolist':
+  let { herolist } = require('./scrape/herolist.js')
+  await herolist().then((ress) => {
+  let listt = `*List hero untuk feature ${prefix}herodetail*\n\n`
+  for (var i = 0; i < ress.hero.length; i++) {
+  listt += '-  ' + ress.hero[i] + '\n'
+  }
+  m.reply(listt)
+  })
+  break
+
+  case 'herodetail':
+let { herodetails } = require('./scrape/herodetail.js')
+res = await herodetails(body.slice(12))
+her = `*Hero Details ${body.slice(12)}*
+         
+*Nama* : ${res.hero_name}
+*Role* : ${res.role}
+*Quotes* : ${res.entrance_quotes}
+*Fitur Hero* : ${res.hero_feature}
+*Spesial* : ${res.speciality}
+*Rekomendasi Lane* : ${res.laning_recommendation}
+*Harga* : ${res.price.battle_point} [Battle point] | ${res.price.diamond} [DM] | ${res.price.hero_fragment} [Fragment]
+*Rilis* : ${res.release_date}
+         
+*Durability* : ${res.skill.durability}
+*Offence* : ${res.skill.offense}
+*Skill Effect* : ${res.skill_effects}
+*Difficulty* : ${res.skill.difficulty}
+          
+*Movement Speed* : ${res.attributes.movement_speed}
+*Physical Attack* : ${res.attributes.physical_attack}
+*Magic Defense* : ${res.attributes.magic_defense}
+*Ability Crit Rate* : ${res.attributes.ability_crit_rate}
+*HP* : ${res.attributes.hp}
+*Mana* : ${res.attributes.mana}
+*Mana Regen* : ${res.attributes.mana_regen}
+         
+*Story* : ${res.background_story}`
+m.reply(her)
+break
+
+case 'emojimix': {
+  if (!text) throw `Example : ${prefix + command} 😅+🤔`
+let [emoji1, emoji2] = text.split`+`
+let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
+for (let res of anu.results) {
+let encmedia = await neoxy.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+await fs.unlinkSync(encmedia)
+}
+}
+break
+
+case 'listonline': case 'liston': {
+  if (!m.isGroup) throw mess.group
+  let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
+  let online = [...Object.keys(store.presences[id]), botNumber]
+  neoxy.sendText(m.chat, 'List Online:\n\n' + online.map(v => '⭔ @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+}
+break
+
+case 'style': case 'styletext': {
+  let { styletext } = require('./scrape/randomMn.js')
+  if (!text) throw 'Masukkan Query text!'
+              let anu = await styletext(text)
+              let teks = `Srtle Text From ${text}\n\n`
+              for (let i of anu) {
+                  teks += `⭔ *${i.name}* : ${i.result}\n\n`
+              }
+              m.reply(teks)
+    }
+    break
+
+  case 'ff':{
+  if (!text) throw `Masukkan ID Free Fire Kamu`
+  m.reply(mess.wait)
+  get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${text}`)
+  nick = get_result.nickname
+  anu = `                                
+  ⭔ UID : ${text}
+  ⭔ Nickname : ${nick}
+  `
+  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: anu,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+  case 'ml':{
+  if (!text) throw 'Cmd: ${prefix}ml _id-server_\nEx: ${prefix}ml 12345678-1234'
+    m.reply(mess.wait)
+    arg = args.join(' ')
+    id = arg.split('-')[0]
+    zone = arg.split('-')[1]
+    get_result = await fetchJson(`https://api-xyz.com/trueid/mobilelegends/?id=${id}&zone=${zone}`)
+    nick = get_result.nickname
+    anu = `                                  
+  ⭔ UID : ${id}
+  ⭔ Server : ${zone}
+  ⭔ Nickname : ${nick}
+  `
+    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: anu,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'genshin':{
+  if (!text) throw 'Cmd: ${prefix}genshin _id-server_\nEx: ${prefix}genshin 12345678-ASIA\n\nNote: Untuk Server Wajib Menggunakan Huruf Besar Semua'
+    m.reply(mess.wait)
+    arg = args.join(' ')
+    id = arg.split('-')[0]
+    zone = arg.split('-')[1]
+    get_result = await fetchJson(`https://api-xyz.com/trueid/gensin/?id=${id}&server=${zone}`)
+    nick = get_result.nickname
+    anu = `                                  
+  ⭔ UID : ${id}
+  ⭔ Server : ${zone}
+  ⭔ Nickname : ${nick}
+  `
+    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: anu,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'setppbot': {
+  if (!isCreator) throw mess.owner
+  if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+  if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+  if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+  let media = await neoxy.downloadAndSaveMediaMessage(quoted)
+  await neoxy.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+  m.reply(mess.success)
   }
   break
 //━━━━━━━━━━━━━━━[ AKHIR FITUR ]━━━━━━━━━━━━━━━━━//
