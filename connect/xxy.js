@@ -14,6 +14,7 @@ var { exec, spawn, execSync } = require("child_process")
 var axios = require('axios')
 var path = require('path')
 var os = require('os')
+const crypto = require('crypto')
 var moment = require('moment-timezone')
 var { JSDOM } = require('jsdom')
 var speed = require('performance-now')
@@ -68,6 +69,13 @@ var wib = moment.tz('Asia/Jakarta').format('HH:mm')
 var wita = moment.tz('Asia/Makassar').format('HH:mm')
 var wit = moment.tz('Asia/Jayapura').format('HH:mm')
 var jangwak = moment.tz('Asia/Jakarta').format('DD/MM/YY')
+
+var waktuWIB = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+
+//cripto
+const createSerial = (size) => {
+  return crypto.randomBytes(size).toString('hex').slice(0, size)
+  }
 
 //━━━━━━━━━━━━━━━[ FUNCTION ]━━━━━━━━━━━━━━━━━//
 
@@ -1069,17 +1077,15 @@ break
 case 'ssweb':
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-if (!q) return m.reply(`*Example* :\n#tahta Lexxy`)
 if (!q) return m.reply(`*Example* :\n#ssweb https://google.com`)
 m.reply('proses...')
 ssweb = `https://leyscoders-api.herokuapp.com/api/ssweb-hp?url=${q}&apikey=IkyOgiwara`
-neoxy.sendMessage(from, {image:{url:ssweb}, caption:"Done!"}, {quoted:m})
+neoxy.sendMessage(m.chat, {image:{url:ssweb}, caption:"Done!"}, {quoted:m})
                 m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
 case 'attp':
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-if (!q) return m.reply(`*Example* :\n#tahta Lexxy`)
 if (!q) return m.reply(`Contoh: ${prefix + command} Hai`)
 gehdhe = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURI(q)}`)
 neoxy.sendMessage(m.chat, { sticker: gehdhe }, { quoted: m })
@@ -1088,7 +1094,7 @@ break
 case 'tahta':
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-if (!q) return m.reply(`*Example* :\n#tahta Lexxy`)
+if (!q) return m.reply(`*Contoh* :\n#tahta Kukuh`)
 m.reply(mess.wait)
 buffer = `https://leyscoders-api.herokuapp.com/api/harta-tahta?text=${q}&apikey=IkyOgiwara`
 neoxy.sendMessage(m.chat, {image:{url:buffer}, caption:"Done!"}, {quoted:m})
@@ -1097,7 +1103,7 @@ break
 case 'teksto':
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-if (!q) return m.reply(`*Example* :\n#teksto Lexxy`)
+if (!q) return m.reply(`*Contoh* :\n#teksto Kukuh`)
 m.reply(mess.wait)
 buffer = `https://leyscoders-api.herokuapp.com/api/textto-image?text=${q}`
 neoxy.sendMessage(m.chat, {image:{url:buffer}, caption:"Done!"}, {quoted:m})
@@ -1497,7 +1503,7 @@ db.data.users[m.sender].limit -= 1 // -1 limit
                 let media = await yta(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 neoxy.sendMessage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
-                neoxy.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                neoxy.sendMessage(m.chat, { document: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `KuhXD - ${media.title}.mp3` }, { quoted: m })
             }
 m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
@@ -1511,6 +1517,7 @@ neoxy.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4'
 }
 m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
+
 case 'tiktokmp4':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
@@ -1527,11 +1534,12 @@ if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
    }
   m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
+
 case 'tiktokmp3':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
 let { TiktokDownloader } = require('./scrape/tiktokdl')
-if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/ZSdGcA6MK/?k=1`)
+if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/urlvideo`)
 if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
   m.reply(mess.wait)
    const musim_rambutan = await TiktokDownloader(`${q}`).catch(e => {
@@ -1539,10 +1547,11 @@ if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
 } )
    console.log(musim_rambutan)
    const musim_duren_a = musim_rambutan.result.nowatermark
-    neoxy.sendMessage(m.chat, { audio: { url: musim_duren_a }, mimetype: 'audio/mp4' }, { quoted: m })
+    neoxy.sendMessage(m.chat, { document: { url: musim_duren_a }, fileName: 'KuhXD - TikTod.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
    }
  m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
+
 case 'play': case 'ytplay': {
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
@@ -1645,13 +1654,97 @@ case 'wallpaper': {
   }
   break
 case 'quotesanime': {
-  m.reply(mess.wait)
   let anu = await quotesAnime()
   result = anu[Math.floor(Math.random() * anu.length)]
-  let buttonsquotes = [{buttonId: `quotesanime`, buttonText: {displayText: 'Next Result'}, type: 1}]
-  neoxy.sendButtonText(m.chat, buttonsquotes, `${result.quotes}\n\nBy : ${result.karakter}`, global.ownerName, m)
-  }
-  break
+txt = `_${result.quotes}_
+
+By : ${result.karakter}
+
+
+⭔ Anime : ${result.anime}
+⭔ Episode : ${result.episode}
+⭔ Upload At : ${result.up_at}
+⭔ Link : ${result.link}
+`
+  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+    templateMessage: {
+        hydratedTemplate: {
+            hydratedContentText: txt,
+                    hydratedFooterText: creator,
+                    hydratedButtons: [{
+urlButton: {
+displayText: 'YouTube',
+url: 'https://youtube.com/c/KukuhRamadhann'
+                        }
+                    }, {
+quickReplyButton: {
+displayText: 'Next',
+id: 'quotesanime'
+                        }
+                    }, {
+                    }, {
+            }]
+        }
+        }
+    }), { userJid: m.chat, quoted: m })
+    await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+
+  case 'katabucin': {
+    let anu = await fetchJson('https://raw.githubusercontent.com/ramadhankukuh/database/master/kata-kata/bucin.json')
+    result = anu[Math.floor(Math.random() * anu.length)]
+    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: result,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'Next',
+  id: 'katabucin'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'motivasi': {
+  let anu = await fetchJson('https://raw.githubusercontent.com/ramadhankukuh/database/master/kata-kata/motivasi.json')
+  result = anu[Math.floor(Math.random() * anu.length)]
+  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+    templateMessage: {
+        hydratedTemplate: {
+            hydratedContentText: result,
+                    hydratedFooterText: creator,
+                    hydratedButtons: [{
+urlButton: {
+displayText: 'YouTube',
+url: 'https://youtube.com/c/KukuhRamadhann'
+                        }
+                    }, {
+quickReplyButton: {
+displayText: 'Next',
+id: 'motivasi'
+                        }
+                    }, {
+                    }, {
+            }]
+        }
+        }
+    }), { userJid: m.chat, quoted: m })
+    await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
 case 'wikimedia': {
   if (!text) throw 'Masukkan Query Title'
   let wiki = await wikimedia(text)
@@ -1816,6 +1909,7 @@ case 'style': case 'styletext': {
   m.reply(mess.wait)
   get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${text}`)
   nick = get_result.nickname
+  if (!nick) throw 'Invalid User ID'
   anu = `                                
   ⭔ UID : ${text}
   ⭔ Nickname : ${nick}
@@ -1857,6 +1951,7 @@ break
     zone = arg.split('-')[1]
     get_result = await fetchJson(`https://api-xyz.com/trueid/mobilelegends/?id=${id}&zone=${zone}`)
     nick = get_result.nickname
+  if (!nick) throw 'Invalid User ID'
     anu = `                                  
   ⭔ UID : ${id}
   ⭔ Server : ${zone}
@@ -1899,6 +1994,7 @@ case 'genshin':{
     zone = arg.split('-')[1]
     get_result = await fetchJson(`https://api-xyz.com/trueid/gensin/?id=${id}&server=${zone}`)
     nick = get_result.nickname
+  if (!nick) throw 'Invalid User ID'
     anu = `                                  
   ⭔ UID : ${id}
   ⭔ Server : ${zone}
@@ -1908,6 +2004,116 @@ case 'genshin':{
       templateMessage: {
           hydratedTemplate: {
               hydratedContentText: anu,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'tff':{
+	      const serialFF = createSerial(12)
+	      if (!isCreator) throw mess.owner
+	      if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678`
+          m.reply(mess.wait)
+          arg = args.join(' ')
+          id = arg.split('-')[0]
+          order = arg.split('-')[1]
+          get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${text}`)
+          nick = get_result.nickname
+        if (!nick) throw 'Invalid User ID' 
+          txt = `*「 BOT AUTO PROSES FF 」*
+                
+Berikut Data Transaksi Kamu :
+                                   
+⭔ UID : ${id}
+⭔ Nickname : ${nick}
+⭔ Order : ${order} Diamond
+⭔ Status : Berhasil
+⭔ Waktu : ${waktuWIB} WIB
+⭔ No Transaksi : ${serialFF} 
+⭔ WhatsApp : ${m.sender.split('@')[0]}
+
+Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
+`
+const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: txt,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'tml':{
+  const serialML = createSerial(12)
+  if (!isCreator) throw mess.owner
+  if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678-1234-86`
+    m.reply(mess.wait)
+    arg = args.join(' ')
+    id = arg.split('-')[0]
+    zone = arg.split('-')[1]
+    order = arg.split('-')[2]
+    get_result = await fetchJson(`https://api-xyz.com/trueid/mobilelegends/?id=${id}&zone=${zone}`)
+    nick = get_result.nickname
+  if (!nick) throw 'Invalid User ID'
+  txt = `*「 BOT AUTO PROSES MLBB 」*
+                
+  Berikut Data Transaksi Kamu :
+                                     
+  ⭔ UID : ${id}
+  ⭔ Zone : ${zone}
+  ⭔ Nickname : ${nick}
+  ⭔ Order : ${order} Diamond
+  ⭔ Status : Berhasil
+  ⭔ Waktu : ${waktuWIB} WIB
+  ⭔ No Transaksi : ${serialML} 
+  ⭔ WhatsApp : ${m.sender.split('@')[0]}
+  
+  Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
+  `
+    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: txt,
                       hydratedFooterText: creator,
                       hydratedButtons: [{
   urlButton: {
