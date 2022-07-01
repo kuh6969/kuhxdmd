@@ -2029,6 +2029,9 @@ case 'genshin':{
       await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
 break
 
+//━━━━━━━━━━━━━━━[ FITUR TOPUP, KONEK KE API JIKA INGIN PROSES OTOMATIS ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ API RECOMENDED : https://apigames.id/ ]━━━━━━━━━━━━━━━━━//
+
 case 'tff':{
 	      const serialFF = createSerial(12)
 	      if (!isCreator) throw mess.owner
@@ -2037,7 +2040,7 @@ case 'tff':{
           arg = args.join(' ')
           id = arg.split('-')[0]
           order = arg.split('-')[1]
-          get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${text}`)
+          get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${id}`)
           nick = get_result.nickname
         if (!nick) throw 'Invalid User ID' 
           txt = `*「 BOT AUTO PROSES FF 」*
@@ -2083,6 +2086,61 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
       await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
 break
 
+case 'tcodm':{
+  const serialCODM = createSerial(12)
+  if (!isCreator) throw mess.owner
+  if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678`
+    m.reply(mess.wait)
+    arg = args.join(' ')
+    id = arg.split('-')[0]
+    order = arg.split('-')[1]
+    get_result = await fetchJson(`https://api-xyz.com/trueid/callofduty/?id=${id}`)
+    nick = get_result.nickname
+  if (!nick) throw 'Invalid User ID' 
+    txt = `*「 BOT AUTO PROSES CODM 」*
+          
+Berikut Data Transaksi Kamu :
+                             
+⭔ UID : ${id}
+⭔ Nickname : ${nick}
+⭔ Order : ${order} CP
+⭔ Status : Berhasil
+⭔ Waktu : ${waktuWIB} WIB
+⭔ No Transaksi : ${serialCODM} 
+⭔ WhatsApp : ${m.sender.split('@')[0]}
+
+Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
+`
+const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+templateMessage: {
+    hydratedTemplate: {
+        hydratedContentText: txt,
+                hydratedFooterText: creator,
+                hydratedButtons: [{
+urlButton: {
+displayText: 'Top UP Disini',
+url: 'https://ramadhankukuh.github.io'
+                    }
+                }, {
+urlButton: {
+displayText: 'YouTube',
+url: 'https://youtube.com/c/KukuhRamadhann'
+                    }
+                }, {
+quickReplyButton: {
+displayText: 'BACK TO MENU',
+id: 'menu'
+                    }
+                }, {
+                }, {
+        }]
+    }
+    }
+}), { userJid: m.chat, quoted: m })
+await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+
 case 'tml':{
   const serialML = createSerial(12)
   if (!isCreator) throw mess.owner
@@ -2109,6 +2167,57 @@ case 'tml':{
   ⭔ WhatsApp : ${m.sender.split('@')[0]}
   
   Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
+  `
+    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+          hydratedTemplate: {
+              hydratedContentText: txt,
+                      hydratedFooterText: creator,
+                      hydratedButtons: [{
+  urlButton: {
+  displayText: 'Top UP Disini',
+  url: 'https://ramadhankukuh.github.io'
+                          }
+                      }, {
+  urlButton: {
+  displayText: 'YouTube',
+  url: 'https://youtube.com/c/KukuhRamadhann'
+                          }
+                      }, {
+  quickReplyButton: {
+  displayText: 'BACK TO MENU',
+  id: 'menu'
+                          }
+                      }, {
+                      }, {
+              }]
+          }
+          }
+      }), { userJid: m.chat, quoted: m })
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+break
+
+case 'ewallet':{
+  const serialWallet = createSerial(12)
+  if (!isCreator) throw mess.owner
+  if (!text) throw `Format Salah!\nEx : ${prefix + command} gopay-081234567890-5000`
+    arg = args.join(' ')
+    wallet = arg.split('-')[0]
+    no = arg.split('-')[1]
+    order = arg.split('-')[2]
+  txt = `*「 BOT AUTO PROSES E-WALLET 」*
+                
+  Berikut Data Transaksi Kamu :
+                                     
+  ⭔ Nomor : ${no}
+  ⭔ E-Wallet : ${wallet}
+  ⭔ Nominal : Rp${order}
+  ⭔ Status : Berhasil
+  ⭔ Waktu : ${waktuWIB} WIB
+  ⭔ No Transaksi : ${serialWallet} 
+  ⭔ WhatsApp : ${m.sender.split('@')[0]}
+  
+  *Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)*
   `
     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
       templateMessage: {
