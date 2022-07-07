@@ -72,10 +72,15 @@ var jangwak = moment.tz('Asia/Jakarta').format('DD/MM/YY')
 
 var waktuWIB = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 
+// buat gabut aja
+let noref = Math.floor((Math.random() * 100000000000000000) + 1);
+
 //cripto
 const createSerial = (size) => {
   return crypto.randomBytes(size).toString('hex').slice(0, size)
   }
+
+  var idtrx = createSerial(12)
 
 //━━━━━━━━━━━━━━━[ FUNCTION ]━━━━━━━━━━━━━━━━━//
 
@@ -2033,16 +2038,15 @@ break
 //━━━━━━━━━━━━━━━[ API RECOMENDED : https://apigames.id/ ]━━━━━━━━━━━━━━━━━//
 
 case 'tff':{
-	      const serialFF = createSerial(12)
+  try {
 	      if (!isCreator) throw mess.owner
 	      if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678`
           m.reply(mess.wait)
           arg = args.join(' ')
           id = arg.split('-')[0]
           order = arg.split('-')[1]
-          get_result = await fetchJson(`https://api-xyz.com/trueid/freefire/?id=${id}`)
-          nick = get_result.nickname
-        if (!nick) throw 'Invalid User ID' 
+          get_result = await fetchJson(`https://v1.apigames.id/merchant/M220516IICF3165MT/cek-username/freefire?user_id=${id}&signature=c3c50080d78bb616c005ee1ba35f9a28`)
+          nick = get_result.data.username
           txt = `*「 BOT AUTO PROSES FF 」*
                 
 Berikut Data Transaksi Kamu :
@@ -2052,8 +2056,9 @@ Berikut Data Transaksi Kamu :
 ⭔ Order : ${order} Diamond
 ⭔ Status : Berhasil
 ⭔ Waktu : ${waktuWIB} WIB
-⭔ No Transaksi : ${serialFF} 
-⭔ WhatsApp : ${m.sender.split('@')[0]}
+⭔ ID Transaksi : ${idtrx}
+⭔ No Referensi : ${noref}
+⭔ No WhatsApp : ${m.sender.split('@')[0]}
 
 Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
 `
@@ -2083,11 +2088,74 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
           }
           }
       }), { userJid: m.chat, quoted: m })
-      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
+      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })
+    } catch (e) {
+      m.reply('Invalid User ID')
+      } 
+     }
 break
 
+case 'tml':{
+  try {
+  if (!isCreator) throw mess.owner
+  if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678-1234-86`
+    m.reply(mess.wait)
+    arg = args.join(' ')
+    id = arg.split('-')[0]
+    zone = arg.split('-')[1]
+    order = arg.split('-')[2]
+    get_result = await fetchJson(`https://v1.apigames.id/merchant/M220516IICF3165MT/cek-username/mobilelegends?user_id=${id}${zone}&signature=c3c50080d78bb616c005ee1ba35f9a28`)
+    nick = get_result.data.username
+  txt = `*「 BOT AUTO PROSES MLBB 」*
+                
+  Berikut Data Transaksi Kamu :
+                                     
+  ⭔ UID : ${id}
+  ⭔ Zone : ${zone}
+  ⭔ Nickname : ${nick}
+  ⭔ Order : ${order} Diamond
+  ⭔ Status : Berhasil
+  ⭔ Waktu : ${waktuWIB} WIB
+  ⭔ ID Transaksi : ${idtrx}
+  ⭔ No Referensi : ${noref}
+  ⭔ No WhatsApp : ${m.sender.split('@')[0]}
+  
+  Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
+  `
+  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+        templateMessage: {
+            hydratedTemplate: {
+                hydratedContentText: txt,
+                        hydratedFooterText: creator,
+                        hydratedButtons: [{
+    urlButton: {
+    displayText: 'Top UP Disini',
+    url: 'https://ramadhankukuh.github.io'
+                            }
+                        }, {
+    urlButton: {
+    displayText: 'YouTube',
+    url: 'https://youtube.com/c/KukuhRamadhann'
+                            }
+                        }, {
+    quickReplyButton: {
+    displayText: 'BACK TO MENU',
+    id: 'menu'
+                            }
+                        }, {
+                        }, {
+                }]
+            }
+            }
+        }), { userJid: m.chat, quoted: m })
+        await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })
+      } catch (e) {
+        m.reply('Invalid User ID or Zone ID')
+        } 
+       }
+  break
+
 case 'tcodm':{
-  const serialCODM = createSerial(12)
   if (!isCreator) throw mess.owner
   if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678`
     m.reply(mess.wait)
@@ -2106,8 +2174,9 @@ Berikut Data Transaksi Kamu :
 ⭔ Order : ${order} CP
 ⭔ Status : Berhasil
 ⭔ Waktu : ${waktuWIB} WIB
-⭔ No Transaksi : ${serialCODM} 
-⭔ WhatsApp : ${m.sender.split('@')[0]}
+⭔ ID Transaksi : ${idtrx}
+⭔ No Referensi : ${noref}
+⭔ No WhatsApp : ${m.sender.split('@')[0]}
 
 Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
 `
@@ -2138,63 +2207,6 @@ id: 'menu'
     }
 }), { userJid: m.chat, quoted: m })
 await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
-break
-
-
-case 'tml':{
-  const serialML = createSerial(12)
-  if (!isCreator) throw mess.owner
-  if (!text) throw `Format Salah!\nEx : ${prefix + command} 12345678-1234-86`
-    m.reply(mess.wait)
-    arg = args.join(' ')
-    id = arg.split('-')[0]
-    zone = arg.split('-')[1]
-    order = arg.split('-')[2]
-    get_result = await fetchJson(`https://api-xyz.com/trueid/mobilelegends/?id=${id}&zone=${zone}`)
-    nick = get_result.nickname
-  if (!nick) throw 'Invalid User ID'
-  txt = `*「 BOT AUTO PROSES MLBB 」*
-                
-  Berikut Data Transaksi Kamu :
-                                     
-  ⭔ UID : ${id}
-  ⭔ Zone : ${zone}
-  ⭔ Nickname : ${nick}
-  ⭔ Order : ${order} Diamond
-  ⭔ Status : Berhasil
-  ⭔ Waktu : ${waktuWIB} WIB
-  ⭔ No Transaksi : ${serialML} 
-  ⭔ WhatsApp : ${m.sender.split('@')[0]}
-  
-  Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
-  `
-    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-      templateMessage: {
-          hydratedTemplate: {
-              hydratedContentText: txt,
-                      hydratedFooterText: creator,
-                      hydratedButtons: [{
-  urlButton: {
-  displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
-                          }
-                      }, {
-  urlButton: {
-  displayText: 'YouTube',
-  url: 'https://youtube.com/c/KukuhRamadhann'
-                          }
-                      }, {
-  quickReplyButton: {
-  displayText: 'BACK TO MENU',
-  id: 'menu'
-                          }
-                      }, {
-                      }, {
-              }]
-          }
-          }
-      }), { userJid: m.chat, quoted: m })
-      await neoxy.relayMessage(m.chat, template.message, { messageId: template.key.id })}
 break
 
 case 'ewallet':{
