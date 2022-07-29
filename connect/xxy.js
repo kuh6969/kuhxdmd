@@ -490,29 +490,29 @@ neoxy.send5ButImg(m.chat, menu, creator, thumbnail, btn)
 }
 break
 case 'tiktok':{
-if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/ZSdGcA6MK/?k=1`)
-if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
-tttt =`# *TIKTOK DOWNLOAD*
-_Silahkan Pilih Media_\n_Yang Akan Di Unduh_`
-let btnnn = [{
-urlButton: {
-displayText: 'Source URL',
-url: `${q}`
-}
-}, {
-quickReplyButton: {
-displayText: 'Audio 🎵',
-id: `#tiktokmp3 ${q}`
-}
-}, {
-quickReplyButton: {
-displayText: 'Video 📽️',
-id: `tiktokmp4 ${q}`
-}
-}]
-neoxy.send5ButImg(m.chat, tttt, creator, image, btnnn)
-}
-break
+  let { tiktokdlv3 } = require('@bochilteam/scraper')
+  const jateng = await tiktokdlv3(`${q}`).catch(e => {
+      m.reply('err') 
+     } )
+  if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/urlvideo`)
+  if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
+                  let buttons = [
+                      {buttonId: `tiktokmp3 ${q}`, buttonText: {displayText: '♫ Audio'}, type: 1},
+                      {buttonId: `tiktokmp4 ${q}`, buttonText: {displayText: '► Video'}, type: 1}
+                  ]
+                  let buttonMessage = {
+                      image: { url: jateng.author.avatar },
+                      caption: `
+  ⭔ Nickname : ${jateng.author.nickname}
+  ⭔ Desc : ${jateng.description}`,
+                      footer: creator,
+                      buttons: buttons,
+                      headerType: 4
+                  }
+                  neoxy.sendMessage(m.chat, buttonMessage, { quoted: m })
+              }
+              
+  break
 case 'kick': {
 if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
@@ -578,7 +578,7 @@ if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 let teks = `──── ⌜ Tag All ⌟ ────
  
- ❗ *Pesan : ${q ? q : 'kosong'}*\n\n`
+ ❗ *Pesan : ${q ? q : 'nothing'}*\n\n`
 for (let mem of participants) {
 teks += `⭔ @${mem.id.split('@')[0]}\n`
 }
@@ -1526,16 +1526,16 @@ break
 case 'tiktokmp4':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-let { TiktokDownloader } = require('./scrape/tiktokdl')
-if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/ZSdGcA6MK/?k=1`)
+let { tiktokdlv3 } = require('@bochilteam/scraper')
+if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/urlvideo`)
 if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
-  m.reply(mess.wait)
-   const musim_rambutan = await TiktokDownloader(`${q}`).catch(e => {
+  m.reply(`Loading...\nProses Upload Media Ke WhatsApp`)
+   const musim_rambutan = await tiktokdlv3(`${q}`).catch(e => {
  m.reply('err') 
 } )
    console.log(musim_rambutan)
-   const musim_duren_v = musim_rambutan.result.nowatermark
-   neoxy.sendMessage(m.chat, { video: { url: musim_duren_v }, caption: "Done!" }, { quoted: m })
+   const musim_duren_v = musim_rambutan.video.no_watermark
+   neoxy.sendMessage(m.chat, { video: { url: musim_duren_v }, caption: `Done\n\nNickname : ${musim_rambutan.author.nickname}\nDesc : ${musim_rambutan.description}` }, { quoted: m })
    }
   m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
 break
@@ -1543,15 +1543,15 @@ break
 case 'tiktokmp3':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
-let { TiktokDownloader } = require('./scrape/tiktokdl')
+let { tiktokdlv3 } = require('@bochilteam/scraper')
 if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/urlvideo`)
 if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
   m.reply(mess.wait)
-   const musim_rambutan = await TiktokDownloader(`${q}`).catch(e => {
+   const musim_rambutan = await tiktokdlv3(`${q}`).catch(e => {
  m.reply('err') 
 } )
    console.log(musim_rambutan)
-   const musim_duren_a = musim_rambutan.result.nowatermark
+   const musim_duren_a = musim_rambutan.music
     neoxy.sendMessage(m.chat, { document: { url: musim_duren_a }, fileName: 'KuhXD - TikTod.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
    }
  m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender].limit}*`)
