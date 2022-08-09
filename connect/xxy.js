@@ -468,7 +468,7 @@ menu =`${(help(prefix, author, botname, owner, wib, jangwak))}`
 let btn = [{
 urlButton: {
 displayText: 'Top UP Game',
-url: 'https://ramadhankukuh.github.io/'
+url: 'https://ramadhankukuh.my.id/topup/'
 }
 }, {
 urlButton: {
@@ -927,7 +927,7 @@ break
 case 'sc': case 'script': case 'sourcecode':
 teks =`
 _*Script Bot :*_
-https://ramadhankukuh.github.io//Neoxy-Base
+https://ramadhankukuh.my.id/topup//Neoxy-Base
 _*Creator : Neoxy-BotMD*_
 _*Youtube : Lexxy Official*_
 _*Whatsapp : 0838-3455-8105*_
@@ -1314,7 +1314,6 @@ m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender]
 break
 case 'sticker': case 's': case 'stickergif': case 'sgif': {
 if (!quoted) throw `Balas Video/Image Dengan Caption ${prefix + command}`
-m.reply(mess.wait)
 if (/image/.test(mime)) {
 let media = await quoted.download()
 let encmedia = await neoxy.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
@@ -1439,7 +1438,7 @@ await sleep(1500)
 let btn = [{
 urlButton: {
 displayText: 'Top UP Game',
-url: 'https://ramadhankukuh.github.io/'
+url: 'https://ramadhankukuh.my.id/topup/'
 }
 }, {
 urlButton: {
@@ -1475,7 +1474,7 @@ await sleep(1500)
 let btn = [{
 urlButton: {
 displayText: 'Top UP Game',
-url: 'https://ramadhankukuh.github.io/'
+url: 'https://ramadhankukuh.my.id/topup/'
 }
 }, {
 urlButton: {
@@ -1927,7 +1926,7 @@ case 'style': case 'styletext': {
                       hydratedButtons: [{
   urlButton: {
   displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
+  url: 'https://ramadhankukuh.my.id/topup'
                           }
                       }, {
   urlButton: {
@@ -1970,7 +1969,7 @@ break
                       hydratedButtons: [{
   urlButton: {
   displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
+  url: 'https://ramadhankukuh.my.id/topup'
                           }
                       }, {
   urlButton: {
@@ -2013,7 +2012,7 @@ case 'genshin':{
                       hydratedButtons: [{
   urlButton: {
   displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
+  url: 'https://ramadhankukuh.my.id/topup'
                           }
                       }, {
   urlButton: {
@@ -2070,7 +2069,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                       hydratedButtons: [{
   urlButton: {
   displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
+  url: 'https://ramadhankukuh.my.id/topup'
                           }
                       }, {
   urlButton: {
@@ -2130,7 +2129,7 @@ case 'tml':{
                         hydratedButtons: [{
     urlButton: {
     displayText: 'Top UP Disini',
-    url: 'https://ramadhankukuh.github.io'
+    url: 'https://ramadhankukuh.my.id/topup'
                             }
                         }, {
     urlButton: {
@@ -2188,7 +2187,7 @@ templateMessage: {
                 hydratedButtons: [{
 urlButton: {
 displayText: 'Top UP Disini',
-url: 'https://ramadhankukuh.github.io'
+url: 'https://ramadhankukuh.my.id/topup'
                     }
                 }, {
 urlButton: {
@@ -2239,7 +2238,7 @@ case 'ewallet':{
                       hydratedButtons: [{
   urlButton: {
   displayText: 'Top UP Disini',
-  url: 'https://ramadhankukuh.github.io'
+  url: 'https://ramadhankukuh.my.id/topup'
                           }
                       }, {
   urlButton: {
