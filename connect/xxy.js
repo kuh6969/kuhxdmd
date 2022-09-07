@@ -492,7 +492,7 @@ break
 case 'tiktok':{
   let { tiktokdlv3 } = require('@bochilteam/scraper')
   const jateng = await tiktokdlv3(`${q}`).catch(e => {
-      m.reply('err') 
+      m.reply(mess.wait) 
      } )
   if (args.length < 1) return m.reply(`*Contoh* :\n#tiktok https://vt.tiktok.com/urlvideo`)
   if (!args[0].includes('tiktok')) return m.reply(`Link is not valid`)
@@ -1314,6 +1314,7 @@ m.reply(`*1 Limit Terpakai*\n*Sisa Limit Anda : ${global.db.data.users[m.sender]
 break
 case 'sticker': case 's': case 'stickergif': case 'sgif': {
 if (!quoted) throw `Balas Video/Image Dengan Caption ${prefix + command}`
+m.reply(mess.wait)
 if (/image/.test(mime)) {
 let media = await quoted.download()
 let encmedia = await neoxy.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
@@ -1334,7 +1335,7 @@ case 'smeme': case 'stickermeme': case 'stickmeme': {
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   if (text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
-  m.reply(`Loading...`)
+  m.reply(mess.wait)
   arg = args.join(' ')
   mee = await neoxy.downloadAndSaveMediaMessage(quoted)
   mem = await TelegraPh(mee)
@@ -1348,7 +1349,7 @@ case 'smeme': case 'stickermeme': case 'stickmeme': {
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
   if (!text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
   if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
-  m.reply(`Loading...`)
+  m.reply(mess.wait)
   arg = args.join(' ')
   atas = arg.split('|')[0]
   bawah = arg.split('|')[1]
@@ -1661,10 +1662,7 @@ case 'quotesanime': {
   let anu = await quotesAnime()
   result = anu[Math.floor(Math.random() * anu.length)]
 txt = `_${result.quotes}_
-
 By : ${result.karakter}
-
-
 ⭔ Anime : ${result.anime}
 ⭔ Episode : ${result.episode}
 ⭔ Upload At : ${result.up_at}
@@ -2058,7 +2056,6 @@ Berikut Data Transaksi Kamu :
 ⭔ ID Transaksi : ${idtrx}
 ⭔ No Referensi : ${noref}
 ⭔ No WhatsApp : ${m.sender.split('@')[0]}
-
 Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
 `
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
@@ -2176,7 +2173,6 @@ Berikut Data Transaksi Kamu :
 ⭔ ID Transaksi : ${idtrx}
 ⭔ No Referensi : ${noref}
 ⭔ No WhatsApp : ${m.sender.split('@')[0]}
-
 Pesanan kamu berhasil diproses oleh sistem dalam hitungan detik, ditunggu next ordernya :)\n\n*Harap konfirmasi kembali kepada kami jika dalam 5 menit item yang dibeli belum diterima*
 `
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
