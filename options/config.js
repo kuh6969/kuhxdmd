@@ -30,8 +30,7 @@ owner: 'Fitur Khusus Owner Bot',
 group: 'Fitur Digunakan Hanya Untuk Group!',
 private: 'Fitur Digunakan Hanya Untuk Private Chat!',
 bot: 'Fitur Khusus Pengguna Nomor Bot',
-wait: '*LOADING . . .*\n\n*[  ADS BOT  ]*\n\n*Price List Pulsa Indonesia*\n10.000  > 11.000\n20.000  > 21.000\n50.000  > 50.000\n100.000 > 99.000\n\n*Price List Pulsa China*\n100 ¥ > 305.000\n\n*Price List Pulsa Malaysia*\n100 RM > 350.000\n\nOrder? ↓\nwa.me/12816245470\n\n-------------------\n*More Info Ads ↓*
-www.ramadhankukuh.my.id/bot-ads\n\n*Email For Business ↓*\nkuhra@ramadhankukuh.my.id\n\n*Paypal :* paypal.me/ramadhankukuh\n*Trakteer :* trakteer.id/ramadhankukuh',
+wait: '*LOADING . . .*\n\n*[  ADS BOT  ]*\n\n*Price List Pulsa Indonesia*\n10.000  > 11.000\n20.000  > 21.000\n50.000  > 50.000\n100.000 > 99.000\n\n*Price List Pulsa China*\n100 ¥ > 305.000\n\n*Price List Pulsa Malaysia*\n100 RM > 350.000\n\nOrder? ↓\nwa.me/12816245470\n\n-------------------\n*More Info Ads ↓*\nwww.ramadhankukuh.my.id/bot-ads\n\n*Email For Business ↓*\nkuhra@ramadhankukuh.my.id\n\n*Paypal :* paypal.me/ramadhankukuh\n*Trakteer :* trakteer.id/ramadhankukuh',
 endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 
