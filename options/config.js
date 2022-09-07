@@ -30,7 +30,7 @@ owner: 'Fitur Khusus Owner Bot',
 group: 'Fitur Digunakan Hanya Untuk Group!',
 private: 'Fitur Digunakan Hanya Untuk Private Chat!',
 bot: 'Fitur Khusus Pengguna Nomor Bot',
-wait: '*LOADING . . .*\n\n*[  ADS BOT  ]*\n\n*Price List Pulsa Indonesia*\n10.000  > 11.000\n20.000  > 21.000\n50.000  > 50.000\n100.000 > 99.000\n\n*Price List Pulsa China*\n100 ¥ > 305.000\n\n*Price List Pulsa Malaysia*\n100 RM > 350.000\n\nOrder? ↓\nwa.me/12816245470\n\n-------------------\n*More Info Ads ↓*\nwww.ramadhankukuh.my.id/bot-ads\n\n*Email For Business ↓*\nkuhra@ramadhankukuh.my.id\n\n*Paypal :* paypal.me/ramadhankukuh\n*Trakteer :* trakteer.id/ramadhankukuh',
+wait: '*[  ADS / IKLAN BOT  ]*\n\n*Harga Pulsa*\n10k > Rp11.000\n20k  > Rp21.000\n50k  > Rp50.000\n100k > Rp99.000\ndenom lain bisa ditanyakan. khusus AXIS, INDOSAT, THREE harga lebih murah. harga diatas hanya patokan saja\n\n*Harga Token Listrik*\n20k > Rp22.000\n50k > Rp51.500\n100k > Rp101.000\n500k > Rp500.000\n\nOrder : wa.me/12816245470\n\n\nSupport BOT Ini Dengan Membeli Produk Digital Seperti *PULSA / PAKET DATA / TOKEN LISTRIK / TOPUP GAME*\n\nKeuntungan Sebagian Besar Akan Digunakan Untuk Membeli Server Database, Agar BOT Berjalan Dengan Normal.\n\nThanks...\n-------------------\nOfficial Website : ramadhankukuh.my.id\n\nEmail For Business : kuhra@ramadhankukuh.my.id\n\n*Paypal :* paypal.me/ramadhankukuh\n*Trakteer :* trakteer.id/ramadhankukuh',
 endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 
